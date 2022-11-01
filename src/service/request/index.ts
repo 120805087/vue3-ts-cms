@@ -36,8 +36,6 @@ class ORequest {
     // 2.添加所有实例的拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有实例拦截成功: 请求');
-
         if (this.showLoading) {
           this.loading = ElLoading.service({
             text: '正在请求数据....',
@@ -48,15 +46,12 @@ class ORequest {
         return config;
       },
       (err) => {
-        console.log('所有实例拦截失败: 请求');
         return err;
       }
     );
 
     this.instance.interceptors.response.use(
       (res) => {
-        console.log('所有实例拦截成功: 响应');
-
         // 将loading移除
         this.loading?.close();
 
@@ -66,7 +61,6 @@ class ORequest {
         }
       },
       (err) => {
-        console.log('所有实例拦截失败: 响应');
         return err;
       }
     );
